@@ -31,7 +31,7 @@ export class TasksService {
         const { title, description } = createTaskDTO;
 
         const task: Task = {
-            id : uuid(),
+            id : uuid.v1(),
             title,
             description,
             status: TaskStatus.OPEN,
