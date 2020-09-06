@@ -64,10 +64,16 @@ export class TasksService {
         // return result;
     }
 
-    // updateTaskStatus(id: string, status: TaskStatus): Task{
-    //     const task = this.getTaskById(id);
+    async updateTaskStatus(id: number, status: TaskStatus): Promise<Task>{
+        const task = await this.getTaskById(id);
 
-    //     task.status = status;
-    //     return task;
-    // }
+        task.status = status;
+        await task.save();
+
+        return task;
+    }
+
+    async getTasks(filterDto: GetTasksFilterDTO): Promise<Task[]> {
+        return this.taskRepository.getTasks(filterDto);
+    }
 }
